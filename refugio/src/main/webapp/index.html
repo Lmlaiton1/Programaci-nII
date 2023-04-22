@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formulario</title>
+        <link rel="stylesheet" type="text/css" href="newcss.css">
+</head>
+<body>
+	<h1>Formulario de Mascotas</h1>
+	<form action="servlet" method="post">
+		<label for="tipo">Tipo de Mascota:</label>
+		<select name="tipo" id="tipo">
+			<option value="canino">Canino</option>
+			<option value="felino">Felino</option>
+		</select>
+		<br>
+		<label for="nombre">Nombre:</label>
+		<input type="text" name="nombre">
+		<br>
+		<label for="edad">Edad:</label>
+		<input type="number" name="edad">
+		<br>
+		<label for="raza">Raza:</label>
+		<input type="text" name="raza">
+		<br>
+		<label for="color">Color:</label>
+		<input type="text" name="color">
+		<br>
+		<div id="opcionales"></div>
+		<br>
+		<input type="submit" value="Enviar">
+	</form>
+	
+	<script>
+		const tipoMascota = document.querySelector('#tipo');
+		const opcionales = document.querySelector('#opcionales');
+		
+		tipoMascota.addEventListener('change', () => {
+			if (tipoMascota.value === 'canino') {
+				opcionales.innerHTML = `
+					<label for="nivel-entrenamiento">Nivel de Entrenamiento (1-10):</label>
+					<input type="number" name="nivel-entrenamiento" min="1" max="10">
+				`;
+			} else if (tipoMascota.value === 'felino') {
+				opcionales.innerHTML = `
+					<label for="enfermedad">Tiene Toxoplasmosis:</label>
+					<input type="checkbox" name="enfermedad">
+				`;
+			}
+		});
+	</script>
+</body>
+</html>
